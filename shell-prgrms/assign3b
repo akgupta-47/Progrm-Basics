@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo "enter your account balance"
+read bal
+neg=-1
+if [ $bal -lt 0 ]
+then
+echo "your account is empty and i negative state"
+echo "you need to pay `expr $bal \* $neg`" 
+elif [ $bal -eq 0 ]
+then
+echo "sorry your account is empty"
+elif [ $bal -gt 0 ]
+then 
+echo "you got money man"
+echo "your balance is : $bal"
+fi
