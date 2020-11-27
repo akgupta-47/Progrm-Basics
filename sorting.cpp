@@ -324,3 +324,62 @@ int main()
 
     return 0;
 }
+
+/////////////////////////////////////////////////////
+//Count sort
+// O(n) takes least time but a lot of memory
+#include <iostream>
+
+using namespace std;
+
+int findMax(int *maxAr, int n){
+    int max=maxAr[0];
+    for(int i=0;i<n;i++){
+        if(maxAr[i]>max){
+            max=maxAr[i];
+        }
+    }
+    return max;
+}
+
+void counrSort(int *sortAr, int n){
+    int max=findMax(sortAr,n);
+    int *c=new int[max+1];
+    int i,j;
+    for(i=0;i<max+1;i++){
+        c[i]=0;
+    }
+    for(i=0;i<n;i++){
+        c[sortAr[i]]++;
+    }
+    i=j=0;
+    while(i<max+1){
+        if(c[i]>0){
+            sortAr[j++]=i;
+            c[i]--;
+        }else{
+            i++;
+        }
+    }
+}
+
+int main()
+{
+    cout<<"enter num of elements"<<endl;
+    int n;
+    cin>>n;
+    cout<<"enter an integer array"<<endl;
+    int arr[n];
+    for(int i=0; i<n ;i++){
+        cin>>arr[i];
+    }
+    counrSort(arr, n);
+
+    cout<<"sorted integer array :-"<<endl;  
+    for(int j=0; j<n; j++){
+        cout<<arr[j]<<" ";
+    }
+
+    return 0;
+}
+
