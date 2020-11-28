@@ -7,3 +7,48 @@ max compariosns for searching depend on height of the tress
 log(n) <= h <= n
 unsucessful search = height of tree comparisons*/
 
+#include <iostream>
+
+using namespace std;
+class Node {
+    public:
+    int data;
+    Node *lft;
+    Node *rgt;
+};
+Node* root=NULL:
+
+void Insert(int key){
+    Node *temp = root;
+    Node *r,*p;
+    
+    if(root == NULL){
+        p = new Node;
+        p->data = key;
+        p->lft = p->rgt = NULL;
+        return;
+    } 
+    while(t != NULL){
+        r=t;
+        if(key < t->data)
+            t = t->lft;
+        else if(key > t->data)
+            t = t->rgt;
+        else
+            return;
+    }
+    
+    p = new Node;
+    p->data = key;
+    p->lft = p->rgt = NULL;
+    
+    if(key < r->data) r->lft = p;
+    else r->rgt = p;
+}
+
+int main()
+{
+    cout<<"Hello World";
+
+    return 0;
+}
