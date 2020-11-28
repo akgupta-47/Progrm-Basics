@@ -1,0 +1,9 @@
+/* Binary Search Tree 
+No duplicates
+In order ges sorted order 
+2nCn/n+1 trees can be generated
+time needed depends on height of tree
+max compariosns for searching depend on height of the tress
+log(n) <= h <= n
+unsucessful search = height of tree comparisons*/
+

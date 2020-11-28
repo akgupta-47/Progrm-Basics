@@ -1,0 +1,30 @@
+Git commands that we use normally
+
+git remote -v ---------------------------------"to check fetch and push upstreams in the folder"
+
+git add .
+git commit -m "some message"
+
+git push origin branchName
+git pull origin branchName
+
+git checkout -b branchName ---------------------------------"to create new branch"
+git checkout branchName -----------------------------"go to the particular branch"
+git remote add origin link
+
+// delete branch locally
+git branch -d localBranchName
+
+// delete branch remotely
+git push origin --delete remoteBranchName
+
+// refresh branch list
+git fetch -p
+
+// to change existing branch to master
+git checkout better_branch
+git merge --strategy=ours master    # keep the content of this branch, but record a merge
+git checkout master
+git merge better_branch             # fast-forward master up to the merge
+
+git branch -m newName
