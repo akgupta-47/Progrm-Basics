@@ -382,4 +382,69 @@ int main()
 
     return 0;
 }
+///////////////////////////////////////////
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+void Merge(int *A, int l,int mid, int h ){
+    int i,j,k;
+    int B[mid++];
+    /*
+    int m=0;
+    for(int z=mid+1;z<=h;z++){
+        B[m++] = A[z];
+    }
+    */
+    i=l;    j=mid+1;    k=l;
+    while(i<=mid && j<=h){
+        if(A[i] < A[j]){
+            B[k++] = A[i++];
+        }else{
+            B[k++] = A[j++];
+        }
+        for(; i<=mid ; i++){
+            B[k++]=A[i];
+        }
+        for(; j<=mid ; j++){
+            B[k++]=A[j];
+        }
+        
+        for(i=l ; i<=h; i++) A[i] = B[i];
+    }
+}
+
+void mergerSort(int* ar, int n){
+    int p,i,mid,l,h;
+    
+    for(p=2; p<=n; p=p*2){
+        for(i=0; i+p-1<n; i=i+p){
+            l=i;
+            h=i+p-1;
+            mid = floor((l+h)/2);
+            Merge(ar, l,mid, h);
+        }
+    }
+    if((p/2) < n){
+    Merge(ar, 0,p/2, n-1);
+    } 
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0; i<n; i++){
+        cin>>arr[i];
+    }
+    
+    mergerSort(arr, n);
+    
+    for(int j=0; j<n;j++){
+        cout<<arr[j]<<" ";
+    }
+
+    return 0;
+}
 
