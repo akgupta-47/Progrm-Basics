@@ -87,6 +87,41 @@ int main()
     return 0;
 }
  /////
+ class Solution {
+public:
+    int countBinarySubstrings(string sub) {
+        char temp;
+        int count = 0;
+        int i,k,flag;
+        int push,pop;
+        for(i=0; i<sub.length(); i++){
+            temp = sub[i];
+            k=i+1;
+            push = 1;
+            pop = 0;
+            flag = 1;
+            while(k < sub.length()){
+                if(sub[k] == temp && flag == 0){
+                    k++;
+                    break;
+                }
+                if(sub[k] == temp && flag == 1){
+                    push++;
+                }else{
+                    flag = 0;
+                    pop++;
+                }
+                if(push == pop){
+                    count++;
+                    break;
+                }
+                k++;
+            }
+        }
+        return count;
+    }
+};
+ 
  // vector approach
 #include <bits/stdc++.h>
 using namespace std;
