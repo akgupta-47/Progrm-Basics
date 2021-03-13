@@ -1,6 +1,56 @@
 import re
 import random
-'''
+
+# question 1
+eng = []
+math = []
+sci = []
+it = []
+maxLst = []
+minLst = []
+avgLst = []
+for i in range(0, 4):
+    eng.append(int(input()))
+    math.append(int(input()))
+    sci.append(int(input()))
+    it.append(int(input()))
+
+
+def findall(lst):
+    print('the max marks in test is ', max(lst))
+    print('the min marks in test is ', min(lst))
+    print('the avg marks in test is ', sum(lst)/len(lst))
+    maxLst.append(max(lst))
+    minLst.append(min(lst))
+    avgLst.append(sum(lst)/len(lst))
+
+
+findall(eng)
+findall(math)
+findall(sci)
+findall(it)
+
+print('overall maximum is ', max(maxLst))
+print('overall minimum is ', min(minLst))
+print('overall average is ', sum(avgLst) / len(avgLst))
+
+# question 2
+print('Input your basic salary ')
+# input function generally returns string so we have specify it as integer to apply comparison ooperators
+Basic_Salary = int(input())
+if Basic_Salary <= 10000:
+    DA = (Basic_Salary * 80) / 100
+    HRA = (Basic_Salary * 20) / 100
+elif Basic_Salary <= 20000:
+    DA = (Basic_Salary * 90) / 100
+    HRA = (Basic_Salary * 25) / 100
+elif Basic_Salary < 20000:
+    DA = (Basic_Salary * 90) / 100
+    HRA = (Basic_Salary * 25) / 100
+Gross_Salary = Basic_Salary + DA + HRA
+print(Gross_Salary)
+
+# question 4
 list_1 = [10, 20, 30, 40, 50, 60, 70, 80]
 list_1.append(200)
 list_1.append(300)
@@ -12,9 +62,8 @@ print(list_1)
 
 list_1.sort(reverse=True)
 print(list_1)
-'''
-# new question about dist
-'''
+
+# question 5
 D = {1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five"}
 D[6] = 'Six'
 D.update({7: "Seven"})
@@ -26,10 +75,11 @@ key = 5
 if key in D.keys():
     print("present sir")
 print(len(D))
-'''
-'''
+
+# question 6
 # new question about list
-list_2 = random.sample(range(100, 900), 10)
+list_2 = random.sample(range(100, 900), 100)
+# random.randint(100, 900)
 print(list_2)
 even_count, odd_count = 0, 0
 
@@ -43,14 +93,14 @@ for num in list_2:
         odd_count += 1
 print(even_count, odd_count)
 
+
+# concepts
+
 nest_list = [[1, 2, 3], [4, 8, 7], [2, 9, 11], [5, 6, 7], [1, 15, 4]]
 for i in nest_list:
     print(min(i), max(i))
-'''
 
-# functions
 
-'''
 def first_fun(name, lname):
     print(name + " "+lname + " ello there mate")
 
@@ -63,6 +113,7 @@ first_fun(name, lname)
 # this will give error for b
 def newFun(a, b):
     print(a+b)
+
 
 newFun(4)
 
@@ -84,6 +135,8 @@ def listFun(iter_list_first):
 iter_list_first = [1, 2, 3, 4]
 listFun(iter_list_first)
 
+# question 7
+
 
 def comp_interest(p, r, t):
     Amount = p * (pow((1+r/100), t))
@@ -92,7 +145,6 @@ def comp_interest(p, r, t):
 
 
 comp_interest(10000, 4, 5)
-'''
 
 # CLasses
 '''
@@ -108,8 +160,9 @@ class Person:
 p1 = Person("Ross", 25)
 p1.myfunc()
 '''
+# question 8a
 
-'''
+
 class Restraunt:
     def __init__(self, res_name, cuisine):
         self.res_name = res_name
@@ -125,7 +178,8 @@ class Restraunt:
 p1 = Restraunt("Sagar ratna", "South Indian")
 p1.describe_res()
 p1.open_res()
-'''
+
+# question 3
 password = "ChandlerBing@123"
 flag = 0
 passLen = len(password)
