@@ -1,3 +1,4 @@
+import sympy
 import re
 import random
 
@@ -9,7 +10,7 @@ it = []
 maxLst = []
 minLst = []
 avgLst = []
-for i in range(0, 4):
+for i in range(0, 10):
     eng.append(int(input()))
     math.append(int(input()))
     sci.append(int(input()))
@@ -79,19 +80,29 @@ print(len(D))
 # question 6
 # new question about list
 list_2 = random.sample(range(100, 900), 100)
+even_list = []
+odd_list = []
+prime_list = []
 # random.randint(100, 900)
 print(list_2)
-even_count, odd_count = 0, 0
+even_count, odd_count, prime_count = 0, 0, 0
 
 # iterating each number in list
 for num in list_2:
     # checking condition
-    if num % 2 == 0:
+    if sympy.isprime(num):
+        prime_count += 1
+        prime_list.append(num)
+
+    elif num % 2 == 0:
         even_count += 1
+        even_list.append(num)
 
     else:
         odd_count += 1
-print(even_count, odd_count)
+        odd_list.append(num)
+print(even_count, odd_count, prime_count)
+print(prime_list, even_list, odd_list)
 
 
 # concepts
@@ -178,6 +189,29 @@ class Restraunt:
 p1 = Restraunt("Sagar ratna", "South Indian")
 p1.describe_res()
 p1.open_res()
+
+
+class User:
+    def _init_(self, first_name, last_name, roll, phno):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.roll = roll
+        self.phno = phno
+
+    def describe_user(self):
+        print(self.roll, self.first_name, self.last_name, self.phno)
+
+    def greet_user(self):
+        print("Welcome " + str(self.first_name)+" "+str(self.last_name))
+
+
+u1 = User("Chandler", "bing", 1269, 89765432)
+u1.describe_user()
+u1.greet_user()
+
+u1 = User("joey", "tribiani", 1669, 897678932)
+u1.describe_user()
+u1.greet_user()
 
 # question 3
 password = "ChandlerBing@123"
