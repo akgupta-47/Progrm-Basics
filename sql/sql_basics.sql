@@ -84,6 +84,7 @@ SELECT ename FROM emp WHERE substr(ename,2,1) like 'a' or substr(ename,1,1) like
 insert into emp values(128, 'liverpoolA', 'footbaler', 300000, 80);
 insert into emp values(128, 'aztec', 'priest', 2000, 1000);
 SELECT ename FROM emp WHERE substr(ename,1,1) like 'a' or substr(ename,1,1) like 'A' or substr(ename,length(ename),1) like 'A' or substr(ename,length(ename),1) like 'a' ;
+--order by dept asc, salary desc
 
 
 ////////////////////////////////
@@ -99,6 +100,21 @@ select trunc(sysdate, 'month') from dual;
 select round(sysdate, 'YEAR') from dual;
 select trunc(sysdate, 'year') from dual;
 select to_char(sysdate+3, 'day') from dual;
+select months_between(to_date('12-dec-2003', 'dd-mon-yyyy' ), to_date('12-feb-2004', 'dd-mon-yyyy' )) as diffMonth from dual;
+select last_day(to_char('12-12-2003', 'day')) from dual;
+select next_day(sysdate, 'friday') as nextFriday from dual;
+create table studs
+(
+    roll int,
+    dob date
+);
+insert into studs values(1, to_date('12-dec-2003 6:12', 'dd-mon-yyyy hh24:mi' ));
+insert into studs values(1, '1-dec-2000');
+insert into studs values(1, to_date('6:12', 'hh24:mi' ));
+select to_char(dob, 'dd/mm/yyyy hh24:mi:ss') from studs;
+--delete studs
+select * from studs where dob like 'monday';
+
 
 
 
@@ -126,4 +142,46 @@ select ltrim('        pawri') from student;
 select ltrim('pppaawri', 'pa') from student;
 select replace('teacher ki pawri ho rahi h','teacher','student') from student;
 select substr(firstname, 2,3) from student;
+select * from user_contraints where table_name = 'Employee';
+
+
+select deptno,count(*) from employee where group by deptno order by deptno;
+select sum(salary) Total_salary from employee where job <> 'Prof' group by Dept;
+select avg(salary) Average_salary from employee where job <> 'Prof' group by Dept;
+select deptno,job,sum(salary) from employee group by deptno,job;
+select deptno,job,sum(salary) from employee group by deptno; --this won't work as if u want to select job thn u have to group data by it too
+select deptno,job,sum(salary) from employee where job <> 'AssocProf' group by deptno;
+-- to restrict data or perform on data after grouping we cannot use 'where' so we use 'having'
+select deptno,sum(salary) totalSalary from employee group by deptno having(totalSalary) > 16000;	
+-- we can write having clause before group by but logically it is preffered to have it after
+-- constraints are not null,unique(multpli null is allowed),
+-- we can also specify constraints using unique(roll_no,class) and we can assignit a name by constraint rno_class_unique unique(roll_no,class);
+-- we can repeat either of one in one row but we cannot repeat them for same row
+-- primary key is unique and not null
+constraint check_class check (class in ('bed','bcom','btech')), (case sensetive)
+check (marks >= 0)
+-- don't use check constraints if the values will change in future
+-- foreign key can be single or mutiple columns, child tabel is one that contains foreign key and parent has primary key
+create table department (
+deptno number(2) primary key,
+dname char(20) 
+);
+create table employee (
+eno number(2) primary key,
+ename char(20),
+job char)10),
+deptno number(2) refrences department(deptno)
+);
+-- on delete cascade the entry is removed from both the tabels
+-- on delete set null , removed from refrence table(parent department) but value of foreign key set to null in main table(employee child)
+-- we can set at end of table creation on delete cascade
+alter table student add (address varchar(20), name varchar(10));
+alter table student add primary key (roll_number);
+alter table student add foreign key (class) refrencees class_detail(class);
+-- alter size from 15, but when decreasing size mind it that some values can of higher size and size reduction is only allowed for char and varchar, for any other data type like number we have to empty al columns first
+alter table student modify name char(20);
+-- alter datatype 
+alter table student modify name varchar(20);
+alter table student drop primary key
+alter table student drop column mobile-no
 
