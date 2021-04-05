@@ -1,0 +1,2 @@
+when 2 technologies are made to communicate with each other, they need to follow a certain set of rules and standards like django backend and react frontend.
+yaml and yml are one and the same thing in terms of file extension

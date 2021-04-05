@@ -1,0 +1,44 @@
+# this is a comment
+# indentation is everything in python
+
+# yaml still recognizes string if u don't put ""
+courses:
+    course_name: "Django Back end Developer"
+    version: 1.5
+    # we use &name to specify the var to use it as a variable in further code
+    price: &my_price 199
+    is_public: true
+    # better practive in yaml is underscore rather than camelCase
+    # date is specified with year coming first
+    release_date: 2021-04-05 02:58:22
+    pre_enroll: null
+    # array formats :-
+    tags:
+        - python
+        - web developer
+        - mysql
+    course_ta: ["jack", "logan", "danny"]
+    ta_details:
+        - name: "jack"
+          email: "jack@valo.com"
+          role: "content-admin"
+        - name: "logan"
+          email: "logan@valo.com"
+          role: "creative marketing"
+        - { name: "danny", email: "danny@valo.com", role: "assistant" }
+    short_desc: >
+        here is a short
+        description for django course
+        this will treat it as 1 line
+    long_desc: |
+        now we can stone indentaion
+        and formatting
+    process_payment: *my_price
+
+    adv: &advan
+      mykey: myval
+    
+    # here <<: copied all the values from object in there
+    another_adv:
+      one: two
+      <<: *adv
