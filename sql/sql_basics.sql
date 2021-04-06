@@ -47,7 +47,7 @@ insert into stu values(1, to_date('12-dec-1980 6:00', 'dd-mon-yyyy hh24:mi' ));
 select rno, to_char(dob, 'mm/dd/yyyy hh24:mi:ss') from stu;
 select rno, to_char(dob, 'hh24:mi:ss') from stu; --- if we want to only display time
 select to_char(sysdate +1/48, 'dd/mm/yyyy hh24:mi:ss') from dual; --- this adds half hour to time (1day / 24 hrs to add 1 hr, 1day/ 2*24 hours to add half hour  
----insert karte waqt to_date aur display karte hue to_char
+---insert karte waqt to_date aur display karte hue to_char, but when using select and u have to put date inside a fucntion then use to_date, but in function after where we use to_char
 --- to find train departing in next 1hr = where arr <= sysdate + 1/24
 --- where dep between sysdate and sysdate + 1/24;
 --- sysdate-departure < 1/24
@@ -99,6 +99,8 @@ select to_char(sysdate+2, 'dd/mm/yyyy hh24:mi:ss') from dual;
 select to_char(sysdate, 'mm/year') from dual;
 select to_char(sysdate, 'ddspth/month/year') from dual;
 select to_char(sysdate+11/48, 'pm') from dual;
+-- when using trunc or round when specified month, the evaluation is based on 30 days/15 days, when specified year 6 months or above, for day
+-- wednesday we do down and for thusday and above we go up. trunc does not care if u above or below it will always take u down 
 select round(sysdate, 'MONTH') from dual;
 select trunc(sysdate, 'month') from dual;
 select round(sysdate, 'YEAR') from dual;
@@ -233,7 +235,7 @@ deptno number(2) refrences department(deptno)
 alter table student add (address varchar(20), name varchar(10));
 alter table student add primary key (roll_number);
 alter table student add foreign key (class) refrencees class_detail(class);
--- alter size from 15, but when decreasing size mind it that some values can of higher size and size reduction is only allowed for char and varchar, for any other data type like number we have to empty al columns first
+-- alter size from 15, but when decreasing size mind it that some values can of higher size and size reduction is only allowed for char and ---varchar, for any other data type like number we have to empty al columns first
 alter table student modify name char(20);
 -- alter datatype 
 alter table student modify name varchar(20);
