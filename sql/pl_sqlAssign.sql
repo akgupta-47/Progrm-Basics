@@ -149,3 +149,53 @@ begin
     close C1;
 end;
 
+-------------------------- assign 2
+create table book(
+rno number(3),
+bookno number (7),
+doi date,
+dor date,
+fine number(5)
+);
+
+Insert into book values(111,42,'06-jan-2021','05-jan-2021',null);
+Insert into book values(100,49,'22-jan-2021','18-feb-2021',null);
+update
+select *from book;
+
+Declare
+    deNum number;
+    drNum number;
+    meNum number;
+    mrNum number;
+    varNum number;
+    sub number;
+Begin
+    select to_char(doi,'dd') into deNum from book where rno = 100;
+    select to_char(dor,'dd') into drNum from book where rno = 100;
+    select to_char(doi,'mm') into meNum from book where rno = 100;
+    select to_char(dor,'mm') into mrNum from book where rno = 100;
+    
+    if meNum=mrNum then
+        sub:=drNum-deNum;
+        if sub<=7 then
+            varNum:=sub*1;
+        elsif sub<=14 then
+            varNum:=7+((sub-7)*2);
+        else
+            varNum:= 7+14+((sub-14)*3);
+        end if;
+    else
+        sub:=mrNum-meNum;
+        sub:=sub*30;
+        sub:= sub + (drNum-deNum);
+        
+        varNum:= 7+14+((sub-14)*3);
+    end if;
+    
+    update book set fine=varNum where rno=100;
+    dbms_output.PUT_LINE('Fine is : '||varNum);
+end;
+
+
+
